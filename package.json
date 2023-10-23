@@ -1,0 +1,45 @@
+{
+  "name": "editable-div",
+  "version": "0.0.2",
+  "description": "Create an editable div element, supports vue components(both vue2 and vue3)",
+  "scripts": {
+    "play": "pnpm -C playground/vue3 dev",
+    "build": "vite build && vue-tsc --declaration --emitDeclarationOnly --outFile dist/editable-div.js"
+  },
+  "main": "dist/editable-div.es.js",
+  "module": "dist/editable-div.d.ts",
+  "keywords": [
+    "vue",
+    "vue3",
+    "contenteditable",
+    "editable-div"
+  ],
+  "author": "tzyito https://github.com/tzyito",
+  "license": "MIT",
+  "peerDependencies": {
+    "@vue/composition-api": "^1.7.2",
+    "vue": "^2.6.0 || >=3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@vue/composition-api": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.4.0",
+    "typescript": "^5.0.2",
+    "vite": "^4.5.0",
+    "vue": "^3.3.5",
+    "vue-tsc": "^1.8.5"
+  },
+  "dependencies": {
+    "vue-demi": "^0.14.6"
+  },
+  "bugs": {
+    "url": "https://github.com/tzyito/editable-div/issues"
+  },
+  "files": [
+    "dist/*"
+  ],
+  "repository": "https://github.com/tzyito/editable-div"
+}
