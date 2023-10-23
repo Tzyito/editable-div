@@ -1,6 +1,6 @@
 {
   "name": "editable-div",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Create an editable div element, supports vue components(both vue2 and vue3)",
   "scripts": {
     "play": "pnpm -C playground/vue3 dev",
