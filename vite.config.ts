@@ -5,7 +5,7 @@ export default defineConfig({
   plugins: [vue()],
   build: {
     lib: {
-      entry: "src/index.ts",
+      entry: "src/editable-div.ts",
       name: "contenteditable",
       formats: ["es", "umd", "cjs"],
       fileName: (format) => `editable-div.${format}.js`,

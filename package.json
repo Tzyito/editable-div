@@ -1,10 +1,10 @@
 {
   "name": "editable-div",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Create an editable div element, supports vue components(both vue2 and vue3)",
   "scripts": {
     "play": "pnpm -C playground/vue3 dev",
-    "build": "vite build && vue-tsc --declaration --emitDeclarationOnly --outFile dist/editable-div.js"
+    "build": "vite build && vue-tsc --declaration --emitDeclarationOnly"
   },
   "type": "module",
   "keywords": [

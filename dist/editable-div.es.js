@@ -1,6 +1,6 @@
 import { defineComponent as h, ref as c, onMounted as x, watch as _, openBlock as y, createElementBlock as B } from "vue";
 const D = ["contenteditable"], T = /* @__PURE__ */ h({
-  __name: "editable-div",
+  __name: "component",
   props: {
     canEdit: { type: Boolean, default: !0 },
     limit: { default: 99999 },
@@ -8,8 +8,8 @@ const D = ["contenteditable"], T = /* @__PURE__ */ h({
     renderHtml: { type: Boolean, default: !1 }
   },
   emits: ["update:content", "focus"],
-  setup(f, { emit: p }) {
-    const o = f, a = p, s = c(!1), i = c(!1), r = c(""), l = c(), m = (t) => {
+  setup(p, { emit: f }) {
+    const o = p, a = f, s = c(!1), i = c(!1), r = c(""), l = c(), m = (t) => {
       const e = l.value.textContent;
       s.value || (e.length >= o.limit ? (t.preventDefault(), u(e)) : (a("update:content", e), r.value = e));
     }, v = (t) => {
