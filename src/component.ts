@@ -145,23 +145,9 @@ export default defineComponent({
       }
     );
 
-    const render = () =>
-      h("div", {
-        ref: "editorContainer",
-        style: { ...cssStyle.value },
-        class: props.wrapperClass,
-        contenteditable: props.canEdit,
-        onFocus: handleFocus,
-        onBlur: handleBlur,
-        onKeyup: updateData,
-        onCompositionstart: handleComposition,
-        onCompositionend: handleComposition,
-      });
-
     return {
       ...props,
       isVue3,
-      render,
       editorContainer,
       cssStyle,
       handleFocus,
@@ -192,11 +178,13 @@ export default defineComponent({
             attrs: {
               contentEditable: this.canEdit,
             },
-            onFocus: this.handleFocus,
-            onBlur: this.handleBlur,
-            onKeyup: this.updateData,
-            onCompositionstart: this.handleComposition,
-            onCompositionend: this.handleComposition,
+            on: {
+              focus: this.handleFocus,
+              blur: this.handleBlur,
+              keyup: this.updateData,
+              compositionstart: this.handleComposition,
+              compositionend: this.handleComposition,
+            },
           }
     );
   },
