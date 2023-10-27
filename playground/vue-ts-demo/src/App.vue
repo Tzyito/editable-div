@@ -1,15 +1,15 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import EditableDiv from "editable-div";
-const a = ref("");
+const content = ref("");
 </script>
 <template>
-  <EditableDiv class="container" :content="a"></EditableDiv>
+  <div>
+    <EditableDiv class="container" :content="content" :limit="10"></EditableDiv>
+    <p>输入内容：{{ content }}</p>
+  </div>
 </template>
 <style>
-body {
-  background-color: #000;
-}
 .container {
   background: #fff;
   height: 100px;
