@@ -7,7 +7,7 @@ specifiers:
   '@vue/cli-plugin-eslint': ~5.0.0
   '@vue/cli-service': ~5.0.0
   core-js: ^3.8.3
-  editable-div: ^0.0.6
+  editable-div: ^0.0.7
   eslint: ^7.32.0
   eslint-plugin-vue: ^8.0.3
   vue: ^2.6.14
@@ -15,7 +15,7 @@ specifiers:
 
 dependencies:
   core-js: 3.33.1
-  editable-div: 0.0.6_vue@2.7.15
+  editable-div: 0.0.7_vue@2.7.15
   vue: 2.7.15
 
 devDependencies:
@@ -3412,8 +3412,8 @@ packages:
     engines: {node: '>=6.0.0'}
     dev: true
 
-  /editable-div/0.0.6_vue@2.7.15:
-    resolution: {integrity: sha512-SRVtZJj4MkdslJ15QP5K9ntPNSxx6sGCz/Pi4/f4yktyLi+7SvQPLFn2A1PF5Pe3Q3OFQT4qiNH7+vpWekMhKQ==}
+  /editable-div/0.0.7_vue@2.7.15:
+    resolution: {integrity: sha512-E8fCa0uAa0Q90aBKIKSRU2RqiQERsqyHlFFxVm+KHpyzK2ax1LTwCZ1jU/iYUhBS0qHtF1Ok1kNPUzlNP1howw==}
     peerDependencies:
       '@vue/composition-api': '>=1'
       vue: ^2.6.0 || >=3.0.0
