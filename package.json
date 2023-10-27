@@ -1,22 +1,43 @@
 {
   "name": "editable-div",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Create an editable div element, supports vue components(both vue2 and vue3)",
-  "scripts": {
-    "play": "pnpm -C playground/vue3 dev",
-    "build": "vite build && vue-tsc --declaration --emitDeclarationOnly"
-  },
-  "type": "module",
   "keywords": [
     "vue",
     "vue3",
     "contenteditable",
     "editable-div"
   ],
-  "author": "tzyito https://github.com/tzyito",
+  "author": {
+    "name": "tzyito",
+    "url": "https://github.com/tzyito"
+  },
+  "repository": "https://github.com/tzyito/editable-div",
+  "bugs": {
+    "url": "https://github.com/tzyito/editable-div/issues"
+  },
   "license": "MIT",
+  "scripts": {
+    "play": "pnpm -C playground/vue3 dev",
+    "build": "vite build && vue-tsc --declaration --emitDeclarationOnly"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/editable-div.mjs",
+      "require": "./dist/editable-div.umd.js",
+      "types": "./dist/editable-div.d.ts"
+    }
+  },
+  "types": "dist/editable-div.d.ts",
+  "main": "dist/editable-div.umd.js",
+  "module": "dist/editable-div.mjs",
+  "unpkg": "./dist/editable-div.umd.js",
+  "jsdelivr": "./dist/editable-div.umd.js",
+  "files": [
+    "dist/*"
+  ],
   "peerDependencies": {
-    "@vue/composition-api": "^1.7.2",
+    "@vue/composition-api": ">=1",
     "vue": "^2.6.0 || >=3.0.0"
   },
   "peerDependenciesMeta": {
@@ -33,22 +54,5 @@
   },
   "dependencies": {
     "vue-demi": "^0.14.6"
-  },
-  "bugs": {
-    "url": "https://github.com/tzyito/editable-div/issues"
-  },
-  "files": [
-    "dist/*"
-  ],
-  "exports": {
-    ".": {
-      "import": "./dist/editable-div.es.js",
-      "require": "./dist/editable-div.cjs",
-      "types": "./dist/editable-div.d.ts"
-    }
-  },
-  "types": "dist/editable-div.d.ts",
-  "main": "dist/editable-div.cjs.js",
-  "module": "dist/editable-div.es.ts",
-  "repository": "https://github.com/tzyito/editable-div"
+  }
 }
