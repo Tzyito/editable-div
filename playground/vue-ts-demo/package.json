@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "editable-div": "^0.0.7",
+    "editable-div": "^0.0.9",
     "vue": "^3.3.4"
   },
   "devDependencies": {

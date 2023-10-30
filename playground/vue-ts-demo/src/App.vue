@@ -13,6 +13,9 @@ const renderHtml = ref("");
 const handleSwitch = (key: string, value: any = null) => {
   return (states[key] = value ? value : !states[key]);
 };
+const handleRender = () => {
+  content.value = renderHtml.value;
+};
 const resultText = ref("");
 </script>
 <template>
@@ -26,8 +29,8 @@ const resultText = ref("");
       <div style="margin-top: 10px">
         render html string:
         <textarea type="textarea" v-model="renderHtml" style="width: 300px" />
-        <button @click="() => (content = renderHtml)">start render</button>
       </div>
+      <button @click="handleRender">start render</button>
     </div>
     <EditableDiv
       class="container"
@@ -36,7 +39,8 @@ const resultText = ref("");
       @update:content="(s) => (resultText = s)"
       v-bind="states"
     ></EditableDiv>
-    {{ resultText }}
+    <p>your textContent: {{ resultText }}</p>
+    <p>Remaining word count: {{ limit - resultText.length }}</p>
     <div>
       <li v-for="(key, index) in Object.keys(states)" :key="index">
         current {{ key }}:
