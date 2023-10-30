@@ -3,7 +3,6 @@ import {
   defineComponent,
   h,
   isVue3,
-  isVue2,
   nextTick,
   onMounted,
   ref,
@@ -26,8 +25,6 @@ export default defineComponent({
     const editorContainer = ref();
     const { resize, row, textarea, autogrow, input, editableContainer } =
       cssStyleModules;
-
-    console.log("isVue3: ", isVue2, isVue3);
 
     const baseHeight = 40;
     const cssStyle = computed(() => {
@@ -68,7 +65,7 @@ export default defineComponent({
       // Create a new range object
       const range = document.createRange();
       // Set cursor into the string last
-      range.selectNodeContents(element);
+      range.setStartAfter(element.lastChild as Node);
       range.collapse(false);
       // Get the current selection
       const selection = window.getSelection();
@@ -94,7 +91,8 @@ export default defineComponent({
         div.style.display = "none";
         div.innerHTML = resultText;
         result = div.innerText.slice(0, props.limit);
-        editorContainer.value.innerHTML = resultText;
+        /** fix: Putting the cursor at the end without style effects  */
+        editorContainer.value.innerHTML = resultText + "&nbsp;";
         div = null;
       } else {
         result = resultText.slice(0, props.limit);
@@ -117,7 +115,6 @@ export default defineComponent({
 
     onMounted(() => {
       nextTick(() => {
-        console.log("editorContainer.value: ", editorContainer.value);
         editorContainer.value?.addEventListener(
           "paste",
           (e: ClipboardEvent) => {
@@ -137,9 +134,9 @@ export default defineComponent({
     watch(
       () => props.content,
       (val) => {
-        if (!isFoucs) {
+        if (!isFoucs.value) {
           /** isCompositng char */
-          if (isComposing) return;
+          if (isComposing.value) return;
           resizeClearCharacter(val as string);
         }
       }
