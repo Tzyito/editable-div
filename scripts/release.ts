@@ -77,16 +77,16 @@ async function release() {
 
   fs.writeFileSync(configPath, JSON.stringify(pkg, null, 2));
 
-  // if (
-  //   spawn.sync("npm", ["publish", "--registry=https://registry.npmjs.org"], {
-  //     stdio: "inherit",
-  //   }).status === 1
-  // ) {
-  //   // 恢复版本号
-  //   pkg.version = currentVersion;
-  //   fs.writeFileSync(configPath, JSON.stringify(pkg, null, 2));
-  //   return;
-  // }
+  if (
+    spawn.sync("npm", ["publish", "--registry=https://registry.npmjs.org"], {
+      stdio: "inherit",
+    }).status === 1
+  ) {
+    // 恢复版本号
+    pkg.version = currentVersion;
+    fs.writeFileSync(configPath, JSON.stringify(pkg, null, 2));
+    throw new Error(`invalid publish version: ${targetVersion}`);
+  }
   spawn.sync("git", ["add", "-A"], { stdio: "inhert" });
   spawn.sync("git", ["commit", "-m", `chore: release: v${targetVersion}`], {
     stdio: "inhert",
