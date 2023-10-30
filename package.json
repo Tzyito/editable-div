@@ -1,6 +1,6 @@
 {
   "name": "editable-div",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Create an editable div element, supports vue components(both vue2 and vue3)",
   "keywords": [
     "vue",

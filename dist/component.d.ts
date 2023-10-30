@@ -34,9 +34,6 @@ declare const _default: import("vue-demi").DefineComponent<{
     };
 }, {
     isVue3: boolean;
-    render: () => import("vue-demi").VNode<import("vue-demi").RendererNode, import("vue-demi").RendererElement, {
-        [key: string]: any;
-    }>;
     editorContainer: import("vue-demi").Ref<any>;
     cssStyle: import("vue-demi").ComputedRef<{
         minHeight: string;

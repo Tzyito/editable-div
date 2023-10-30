@@ -79,9 +79,9 @@ async function release() {
   spawn.sync("pnpm", ["build"], {
     stdio: "inherit",
   });
-  spawn.sync("git", ["add", "-A"], { stdio: "inhert" });
-  spawn.sync("git", ["commit", "-m", `chore: release: v${targetVersion}`], {
-    stdio: "inhert",
+  spawn.sync("git", ["add", "-A"], { stdio: "inherit" });
+  spawn.sync("git", ["commit", "-m", `chore: release v${targetVersion}`], {
+    stdio: "inherit",
   });
   spawn.sync("git", ["push", "origin"], { stdio: "inherit" });
   if (

@@ -1,5 +1,5 @@
-import { defineComponent as z, ref as r, isVue2 as H, isVue3 as C, computed as T, onMounted as M, nextTick as k, watch as L, h as y } from "vue-demi";
-const R = {
+import { defineComponent as z, ref as r, computed as B, onMounted as H, nextTick as F, watch as T, isVue3 as k, h as M } from "vue-demi";
+const L = {
   /** allow edit the element */
   canEdit: {
     type: Boolean,
@@ -41,12 +41,12 @@ const R = {
     default: "",
     required: !1
   }
-}, V = {
+}, R = {
   resize: {
     resize: "vertical"
   },
-  row: (t) => ({
-    height: `${t}px`
+  row: (n) => ({
+    height: `${n}px`
   }),
   textarea: {
     overflowX: "hidden",
@@ -61,8 +61,8 @@ const R = {
     overflowY: "hidden",
     whiteSpace: "nowrap"
   },
-  editableContainer: (t) => ({
-    minHeight: `${t}px`,
+  editableContainer: (n) => ({
+    minHeight: `${n}px`,
     width: "180px",
     display: "block",
     padding: "5px 15px",
@@ -76,93 +76,80 @@ const R = {
     borderRadius: "4px",
     transition: "border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1)"
   })
-}, N = z({
+}, O = z({
   name: "EditableDiv",
-  props: R,
+  props: L,
   emit: {
-    "update:content": (t) => {
+    "update:content": (n) => {
     },
-    focus: (t) => {
+    focus: (n) => {
     }
   },
-  setup(t, { emit: a }) {
-    const s = r(!1), l = r(!1), u = r(""), i = r(), { resize: b, row: w, textarea: x, autogrow: S, input: E, editableContainer: B } = V;
-    console.log("isVue3: ", H, C);
-    const p = 40, f = T(() => {
-      const e = { ...B(p) };
-      return t.type === "textarea" ? (Object.assign(e, { ...b, ...w(p), ...x }), t.autogrow && Object.assign(e, { ...S })) : Object.assign(e, { ...E }), e;
-    }), h = (e) => {
+  setup(n, { emit: a }) {
+    const s = r(!1), l = r(!1), u = r(""), i = r(), { resize: f, row: h, textarea: m, autogrow: v, input: g, editableContainer: y } = R, d = 40, b = B(() => {
+      const e = { ...y(d) };
+      return n.type === "textarea" ? (Object.assign(e, { ...f, ...h(d), ...m }), n.autogrow && Object.assign(e, { ...v })) : Object.assign(e, { ...g }), e;
+    }), C = (e) => {
       var o;
-      const n = (o = i.value) == null ? void 0 : o.textContent;
-      s.value || (D(), n.length >= t.limit ? (e.preventDefault(), c(n)) : (a("update:content", n), u.value = n));
-    }, D = () => {
+      const t = (o = i.value) == null ? void 0 : o.textContent;
+      s.value || (w(), t.length >= n.limit ? (e.preventDefault(), c(t)) : (a("update:content", t), u.value = t));
+    }, w = () => {
       var e;
-      t.type === "input" && (i.value.scrollLeft = (e = i.value) == null ? void 0 : e.scrollWidth);
-    }, F = (e) => {
-      const n = document.createRange();
-      n.selectNodeContents(e), n.collapse(!1);
+      n.type === "input" && (i.value.scrollLeft = (e = i.value) == null ? void 0 : e.scrollWidth);
+    }, x = (e) => {
+      const t = document.createRange();
+      t.setStartAfter(e.lastChild), t.collapse(!1);
       const o = window.getSelection();
-      o.removeAllRanges(), o.addRange(n), l.value = !0;
-    }, d = (e) => {
+      o.removeAllRanges(), o.addRange(t), l.value = !0;
+    }, S = (e) => {
       e.type === "compositionstart" ? s.value = !0 : e.type === "compositionend" && (s.value = !1);
     }, c = (e) => {
-      let n;
-      if (t.renderHtml) {
+      let t;
+      if (n.renderHtml) {
         let o = document.createElement("div");
-        o.style.display = "none", o.innerHTML = e, n = o.innerText.slice(0, t.limit), i.value.innerHTML = e, o = null;
+        o.style.display = "none", o.innerHTML = e, t = o.innerText.slice(0, n.limit), i.value.innerHTML = e + "&nbsp;", o = null;
       } else
-        n = e.slice(0, t.limit), i.value.innerText = n;
-      u.value = n, a("update:content", n), F(i.value);
-    }, m = () => {
+        t = e.slice(0, n.limit), i.value.innerText = t;
+      u.value = t, a("update:content", t), x(i.value);
+    }, D = () => {
       l.value = !0, a("focus", !0);
-    }, v = () => {
+    }, E = () => {
       l.value = !1, a("focus", !1);
     };
-    return M(() => {
-      k(() => {
+    return H(() => {
+      F(() => {
         var e;
-        console.log("editorContainer.value: ", i.value), (e = i.value) == null || e.addEventListener(
+        (e = i.value) == null || e.addEventListener(
           "paste",
-          (n) => {
-            n.preventDefault();
-            const o = n.clipboardData.getData("text/plain"), g = u.value + o;
-            g.length >= t.limit ? c(g) : document.execCommand("insertText", !1, o);
+          (t) => {
+            t.preventDefault();
+            const o = t.clipboardData.getData("text/plain"), p = u.value + o;
+            p.length >= n.limit ? c(p) : document.execCommand("insertText", !1, o);
           }
         );
       });
-    }), L(
-      () => t.content,
+    }), T(
+      () => n.content,
       (e) => {
-        if (!l) {
-          if (s)
+        if (!l.value) {
+          if (s.value)
             return;
           c(e);
         }
       }
     ), {
-      ...t,
-      isVue3: C,
-      render: () => y("div", {
-        ref: "editorContainer",
-        style: { ...f.value },
-        class: t.wrapperClass,
-        contenteditable: t.canEdit,
-        onFocus: m,
-        onBlur: v,
-        onKeyup: h,
-        onCompositionstart: d,
-        onCompositionend: d
-      }),
+      ...n,
+      isVue3: k,
       editorContainer: i,
-      cssStyle: f,
-      handleFocus: m,
-      handleBlur: v,
-      updateData: h,
-      handleComposition: d
+      cssStyle: b,
+      handleFocus: D,
+      handleBlur: E,
+      updateData: C,
+      handleComposition: S
     };
   },
   render() {
-    return y(
+    return M(
       "div",
       this.isVue3 ? {
         ref: "editorContainer",
@@ -181,15 +168,17 @@ const R = {
         attrs: {
           contentEditable: this.canEdit
         },
-        onFocus: this.handleFocus,
-        onBlur: this.handleBlur,
-        onKeyup: this.updateData,
-        onCompositionstart: this.handleComposition,
-        onCompositionend: this.handleComposition
+        on: {
+          focus: this.handleFocus,
+          blur: this.handleBlur,
+          keyup: this.updateData,
+          compositionstart: this.handleComposition,
+          compositionend: this.handleComposition
+        }
       }
     );
   }
 });
 export {
-  N as default
+  O as default
 };
