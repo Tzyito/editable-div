@@ -84,16 +84,30 @@ async function release() {
     stdio: "inherit",
   });
   spawn.sync("git", ["push", "origin"], { stdio: "inherit" });
-  if (
-    spawn.sync("pnpm", ["publish", "--registry=https://registry.npmjs.org"], {
+  const res = spawn.sync(
+    "pnpm",
+    ["publish", "--registry=https://registry.npmjs.org"],
+    {
       stdio: "inherit",
-    }).status === 1
-  ) {
-    // 恢复版本号
+    }
+  );
+  if (res.status === 1) {
     pkg.version = currentVersion;
     fs.writeFileSync(configPath, JSON.stringify(pkg, null, 2));
     throw new Error(`invalid publish version: ${targetVersion}`);
   }
+  console.log(res);
+
+  // if (
+  //   spawn.sync("pnpm", ["publish", "--registry=https://registry.npmjs.org"], {
+  //     stdio: "inherit",
+  //   }).status === 1
+  // ) {
+  //   // 恢复版本号
+  //   pkg.version = currentVersion;
+  //   fs.writeFileSync(configPath, JSON.stringify(pkg, null, 2));
+  //   throw new Error(`invalid publish version: ${targetVersion}`);
+  // }
 }
 
 try {
