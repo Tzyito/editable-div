@@ -6,6 +6,7 @@ import {
   nextTick,
   onMounted,
   ref,
+  toRefs,
   watch,
 } from "vue-demi";
 import { dynamicProps } from "./types";
@@ -143,7 +144,7 @@ export default defineComponent({
     );
 
     return {
-      ...props,
+      ...toRefs(props),
       isVue3,
       editorContainer,
       cssStyle,
