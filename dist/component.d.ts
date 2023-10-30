@@ -48,20 +48,21 @@ declare const _default: import("vue-demi").DefineComponent<{
         backgroundImage: string;
         border: string;
         borderRadius: string;
+        /** if textarea: resize row */
         transition: string;
     }>;
     handleFocus: () => void;
     handleBlur: () => void;
     updateData: (e: Event) => void;
     handleComposition: (event: CompositionEvent) => void;
-    canEdit: boolean;
-    limit: number;
-    renderHtml: boolean;
-    row: number;
-    type: "input" | "textarea";
-    autogrow: boolean;
-    wrapperClass: string;
-    content: string | undefined;
+    canEdit: import("vue-demi").Ref<boolean>;
+    limit: import("vue-demi").Ref<number>;
+    renderHtml: import("vue-demi").Ref<boolean>;
+    row: import("vue-demi").Ref<number>;
+    type: import("vue-demi").Ref<"input" | "textarea">;
+    autogrow: import("vue-demi").Ref<boolean>;
+    wrapperClass: import("vue-demi").Ref<string>;
+    content: import("vue-demi").Ref<string | undefined>;
 }, unknown, {}, {}, import("vue-demi").ComponentOptionsMixin, import("vue-demi").ComponentOptionsMixin, {}, string, import("vue-demi").VNodeProps & import("vue-demi").AllowedComponentProps & import("vue-demi").ComponentCustomProps, Readonly<import("vue-demi").ExtractPropTypes<{
     canEdit: {
         type: import("vue-demi").PropType<boolean>;

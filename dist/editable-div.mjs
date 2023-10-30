@@ -1,4 +1,4 @@
-import { defineComponent as z, ref as r, computed as B, onMounted as H, nextTick as F, watch as T, isVue3 as k, h as M } from "vue-demi";
+import { defineComponent as z, ref as r, computed as B, onMounted as H, nextTick as F, watch as T, toRefs as k, isVue3 as M, h as R } from "vue-demi";
 const L = {
   /** allow edit the element */
   canEdit: {
@@ -41,7 +41,7 @@ const L = {
     default: "",
     required: !1
   }
-}, R = {
+}, j = {
   resize: {
     resize: "vertical"
   },
@@ -76,7 +76,7 @@ const L = {
     borderRadius: "4px",
     transition: "border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1)"
   })
-}, O = z({
+}, X = z({
   name: "EditableDiv",
   props: L,
   emit: {
@@ -86,7 +86,7 @@ const L = {
     }
   },
   setup(n, { emit: a }) {
-    const s = r(!1), l = r(!1), u = r(""), i = r(), { resize: f, row: h, textarea: m, autogrow: v, input: g, editableContainer: y } = R, d = 40, b = B(() => {
+    const s = r(!1), l = r(!1), u = r(""), i = r(), { resize: f, row: h, textarea: m, autogrow: v, input: g, editableContainer: y } = j, d = 40, b = B(() => {
       const e = { ...y(d) };
       return n.type === "textarea" ? (Object.assign(e, { ...f, ...h(d), ...m }), n.autogrow && Object.assign(e, { ...v })) : Object.assign(e, { ...g }), e;
     }), C = (e) => {
@@ -138,8 +138,8 @@ const L = {
         }
       }
     ), {
-      ...n,
-      isVue3: k,
+      ...k(n),
+      isVue3: M,
       editorContainer: i,
       cssStyle: b,
       handleFocus: D,
@@ -149,7 +149,7 @@ const L = {
     };
   },
   render() {
-    return M(
+    return R(
       "div",
       this.isVue3 ? {
         ref: "editorContainer",
@@ -180,5 +180,5 @@ const L = {
   }
 });
 export {
-  O as default
+  X as default
 };
