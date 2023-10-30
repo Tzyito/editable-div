@@ -15,7 +15,6 @@ async function confirm() {
         message: "confirm bump?",
         initial: true,
       });
-      console.log("yes: ", yes);
       return resolve(yes);
     } catch (e) {
       console.log(c.red(`error: ${e}`));
@@ -77,8 +76,16 @@ async function release() {
 
   fs.writeFileSync(configPath, JSON.stringify(pkg, null, 2));
 
+  spawn.sync("pnpm", ["build"], {
+    stdio: "inherit",
+  });
+  spawn.sync("git", ["add", "-A"], { stdio: "inhert" });
+  spawn.sync("git", ["commit", "-m", `chore: release: v${targetVersion}`], {
+    stdio: "inhert",
+  });
+  spawn.sync("git", ["push", "origin"], { stdio: "inherit" });
   if (
-    spawn.sync("npm", ["publish", "--registry=https://registry.npmjs.org"], {
+    spawn.sync("pnpm", ["publish", "--registry=https://registry.npmjs.org"], {
       stdio: "inherit",
     }).status === 1
   ) {
@@ -87,10 +94,6 @@ async function release() {
     fs.writeFileSync(configPath, JSON.stringify(pkg, null, 2));
     throw new Error(`invalid publish version: ${targetVersion}`);
   }
-  spawn.sync("git", ["add", "-A"], { stdio: "inhert" });
-  spawn.sync("git", ["commit", "-m", `chore: release: v${targetVersion}`], {
-    stdio: "inhert",
-  });
 }
 
 try {
