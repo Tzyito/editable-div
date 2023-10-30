@@ -61,6 +61,22 @@ createApp()
   .use(EditableDiv)
   .mount('#app')
 ```
+
+## Feature
+### Low cost
+Only two lines of code are needed
+
+### Native Behavior🥷
+like the native `input or textarea` element
+
+### Automatic extension✨
+Can automatically extend
+
+### Customizable rendering🧙‍♂️
+you can do whatever you want in there (eg: Enhance your text by highlighting it.)
+
+<img src="https://raw.githubusercontent.com/tzyito/editable-div/main/playground/public/option_1.gif"/>
+
 ## Examples
 more example information, please check [the playground](https://github.com/Tzyito/editable-div/tree/main/playground)
 ## Props
